@@ -1,7 +1,7 @@
 # DSI HBC NDS save backup tool
 ******** DSI HBC save tool ********
 
-Controls: A: Dump eeprom savedata, START: exit
+Controls: A: Dump EEPROM savedata, X: Write EEPROM from file, START: exit
 
 DUMP EEPROM:
 The dumped data will be written in "savedata.bin" in the same directory as the .nds file.
