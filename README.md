@@ -11,4 +11,5 @@ For usage with flashcard/CFW: just rename "savedata.bin" to "<nds rom game>.sav"
 WRITE EEPROM:
 Put the savedata.bin file in the same directory as the .nds file. Then launch the tool and press X.
 The savedata.bin will then be written to the EEPROM chip.
+
 ******** DSI HBC save tool ********
