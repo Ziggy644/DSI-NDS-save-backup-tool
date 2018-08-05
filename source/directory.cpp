@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
 				cardReadEeprom(0, save, 524288, type);
 				iprintf("writing to file... \n");
 				fwrite(save, 1, sizeof(save), file);
-				iprintf("done.. \n");
+				iprintf("done.\n");
 				fclose(file);
 		}
 
