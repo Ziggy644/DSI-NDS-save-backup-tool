@@ -10,10 +10,10 @@
 //---------------------------------------------------------------------------------
 int main(int argc, char **argv) {
 //---------------------------------------------------------------------------------
-	consoleDemoInit();
 	enableSlot1();
-	if (fatInitDefault()) {
 	sysSetBusOwners(true, true);
+	consoleDemoInit();
+	if (fatInitDefault()) {
 	int type = cardEepromGetType();
 	static u8 save[524288];
 	FILE *file;
@@ -26,6 +26,7 @@ int main(int argc, char **argv) {
 	scanKeys();
 		if(keysDown()&KEY_START) break;
 		if(keysDown()&KEY_A) {
+
 				file = fopen("savedata.bin", "wb");
 				iprintf("reading EEPROM...\n");
 				cardEepromCommand(0x03); 
@@ -34,22 +35,25 @@ int main(int argc, char **argv) {
 				fwrite(save, 1, sizeof(save), file);
 				iprintf("done.\n");
 				fclose(file);
-		}
 
+		}
 		if(keysDown()&KEY_X) {
+
 					file = fopen("savedata.bin", "rb");
 					iprintf("reading savedata.bin...\n");
 					if(!file) {
 					iprintf("reading savedata.bin failed!\n Please restart the system.\n");
 					} else {
 					iprintf("savedata.bin found!\n");
-					fputc(save[524288], file);
+					fread(save, 1, 524288, file);
 					iprintf("Writing to EEPROM...\n");
 					cardWriteEeprom(0, save, 524288, type);
 					iprintf("done.\n");
+					fclose(file);
+
+				}
+			}
 		}
-	}
-	}
 	} else {
 		iprintf("fatInitDefault failure: terminating\n");
 	}
